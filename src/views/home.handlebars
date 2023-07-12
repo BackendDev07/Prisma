@@ -1,0 +1,20 @@
+<div class="box">
+    <form action="/todo" method="post">
+    <input name="title" type="text" required="true" minlength="3">
+    <button>Add</button>
+</form>
+
+
+<ul>
+    {{#each todos}}
+        <li> {{title}} <button onclick='delTodo({{id}})'>Delete {{id}} </button> </li>
+    {{/each}}
+</ul>
+</div>
+
+<script>
+    function delTodo(id) {
+        fetch(`/todo/${id}`, { method: "DELETE" })
+        window.location.reload()
+    }
+</script>
